@@ -279,6 +279,15 @@ namespace nt2 { namespace memory
       resize(szs,boost::mpl::bool_<!extent_type::static_status>());
     }
 
+    /*!
+      @brief Data export from within container
+    **/
+    pointer release()
+    {
+      sizes_ = extent_type(0);
+      return data_.release();
+    }
+
     //==========================================================================
     /*!
      * @brief Add element at end of container, reshape to 1D

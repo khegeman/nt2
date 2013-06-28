@@ -102,6 +102,20 @@ namespace nt2 {  namespace memory
       return  (Size::value && p < size()) || !(Size::value || p );
     }
 
+    static BOOST_FORCEINLINE pointer release()
+    {
+      //========================================================================
+      //               ****NT2_INVALID_RELEASE_STATIC_BUFFER****
+      // If this static assert triggers, a release() request have been issued
+      // on a statically allocated buffer.
+      //               ****NT2_INVALID_RELEASE_STATIC_BUFFER****
+      //========================================================================
+      BOOST_MPL_ASSERT_MSG( (sizeof(pointer) == 0)
+                          , NT2_INVALID_RELEASE_STATIC_BUFFER
+                          , (array_buffer<T,Size>&)
+                          );
+      return 0;
+    }
 
     static void resize( size_type )     {}
 
