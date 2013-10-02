@@ -11,7 +11,8 @@
 
 #include <boost/config.hpp>
 
-#if defined(DOXYGEN_ONLY) || (defined(__GNUC__) && !defined(BOOST_CLANG) && !defined(BOOST_INTEL) && !defined(__CUDACC__))
+#if     defined(DOXYGEN_ONLY) || (defined(__GNUC__) && !defined(BOOST_CLANG)   \
+    && !defined(BOOST_INTEL) && !defined(__CUDACC__))
 
 namespace boost { namespace dispatch { namespace meta
 {

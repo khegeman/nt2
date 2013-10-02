@@ -6,19 +6,23 @@
 //                 See accompanying file LICENSE.txt or copy at
 //                     http://www.boost.org/LICENSE_1_0.txt
 //==============================================================================
-#ifndef BOOST_DISPATCH_META_TIEABLE_HPP_INCLUDED
-#define BOOST_DISPATCH_META_TIEABLE_HPP_INCLUDED
+#ifndef BOOST_DISPATCH_DSL_DETAILS_EXPR_OF_HPP_INCLUDED
+#define BOOST_DISPATCH_DSL_DETAILS_EXPR_OF_HPP_INCLUDED
 
-#include <boost/dispatch/meta/unspecified.hpp>
+#include <boost/dispatch/meta/value_of.hpp>
 
-namespace boost { namespace dispatch { namespace meta
+namespace boost { namespace dispatch { namespace details
 {
-  //============================================================================
-  // Tie-able node hierarchy
-  //============================================================================
-  template<class Tag> struct tieable_ : unspecified_<Tag>
+  template<typename T, typename Enable = void>
+  struct expr_of
+       : expr_of<typename meta::value_of<T>::type>
   {
-    typedef unspecified_<Tag> parent;
+  };
+
+  template<typename T>
+  struct expr_of<T, typename T::proto_is_expr_>
+  {
+    typedef T type;
   };
 } } }
 

@@ -19,7 +19,6 @@
 #include <boost/preprocessor/repetition/enum.hpp>
 #include <boost/preprocessor/array/elem.hpp>
 
-//==============================================================================
 /*!
  * Generates a implement \c operator() prototype.
  * In this function, arguments are defined as \c a0,...,an-1.
@@ -34,7 +33,6 @@
  * }
  * \endcode
  */
-//==============================================================================
 #define BOOST_DISPATCH_CALL(N)                                                 \
 result_type operator()( BOOST_PP_ENUM_BINARY_PARAMS(N,A,const& a) ) const      \
 /**/
