@@ -10,12 +10,28 @@
 #ifndef NT2_SDK_UNIT_IO_HPP_INCLUDED
 #define NT2_SDK_UNIT_IO_HPP_INCLUDED
 
-#include <vector>
-#include <iostream>
-#include <algorithm>
-#include <boost/simd/sdk/details/io_fix.hpp>
-#include <nt2/sdk/meta/type_id.hpp>
 #include <nt2/sdk/meta/as.hpp>
+#include <nt2/sdk/meta/type_id.hpp>
+#include <boost/simd/sdk/details/io_fix.hpp>
+#include <boost/array.hpp>
+
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+namespace boost
+{
+  template<typename T, std::size_t N>
+  inline std::ostream& operator<<(std::ostream& os, array<T,N> const& v)
+  {
+    os << "\n";
+    for(std::size_t i=0;i<N;++i)
+      os << boost::simd::details::display(v[i]) << "  ";
+    os << "\n";
+
+    return os;
+  }
+}
 
 namespace std
 {
